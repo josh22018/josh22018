@@ -11,12 +11,6 @@
   <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&pause=1000&color=00C6FF&center=true&vCenter=true&width=600&lines=Building+agentic+LLM+systems;RAG+%C2%B7+Text2SQL+%C2%B7+Orchestration;Turning+models+into+products" alt="Typing SVG"/>
 </a>
 
-<br/>
-
-<img src="https://komarev.com/ghpvc/?username=josh22018&label=Profile%20views&color=8A2BE2&style=flat" alt="profile views"/>
-&nbsp;
-<img src="https://img.shields.io/github/followers/josh22018?label=Followers&style=flat&color=00C6FF" alt="followers"/>
-
 </div>
 
 ---
@@ -86,25 +80,6 @@ class Joshith:
 | [**QSecure**](https://github.com/josh22018/QSecure-Secure-File-Encryption-Decryption-System-using-Quantum-Cryptography) | Quantum-safe file encryption blending AES-GCM with post-quantum crypto | `Python` `Crypto` |
 | [**Inventory Demand**](https://github.com/josh22018/inventory-demand) | Full-stack demand forecasting with an ML backend + GPT-4o-mini chat interface | `FastAPI` `React` `LLM` |
 | [**VoteChain**](https://github.com/josh22018/VoteChain-BlockChain_Based_Voting_system) | Tamper-evident voting on a custom SHA-256 blockchain with dual-role UI | `Node.js` `Crypto` |
-
----
-
-### 📊 GitHub Stats
-
-<div align="center">
-
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=josh22018&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&include_all_commits=true" alt="stats"/>
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=josh22018&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="top langs"/>
-
-<br/>
-
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=josh22018&theme=tokyonight&hide_border=true" alt="streak"/>
-
-<br/>
-
-<img src="https://github-profile-trophy.vercel.app/?username=josh22018&theme=tokyonight&no-frame=true&column=7&margin-w=8" alt="trophies"/>
-
-</div>
 
 ---
 
