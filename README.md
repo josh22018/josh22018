@@ -17,15 +17,7 @@
 
 ### 🧠 About
 
-```python
-class Joshith:
-    def __init__(self):
-        self.role      = "AI Engineer"
-        self.focus     = ["RAG", "Text2SQL", "LLM Orchestration", "ML / Data Engineering"]
-        self.education = "B.Tech CSE (AI) · Amrita Vishwa Vidyapeetham, Bengaluru"
-        self.currently = "Building multi-agent + LLM-powered systems"
-        self.mantra    = "Spec-driven. Impact-first."
-```
+I'm an **AI Engineer** working on RAG, Text2SQL, LLM orchestration, and ML/data engineering — B.Tech CSE (AI) at Amrita Vishwa Vidyapeetham, Bengaluru. Spec-driven, impact-first.
 
 - 🔭 I build **LLM-powered products** — retrieval pipelines, agent orchestration, and ML systems that ship.
 - 🧪 Interests: multi-agent systems, reinforcement learning, MLOps, and efficient/green AI.
