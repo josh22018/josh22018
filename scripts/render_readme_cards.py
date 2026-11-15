@@ -72,6 +72,9 @@ KEYFRAMES = """
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 @keyframes sweep{0%{transform:translateX(0) skewX(-18deg)}22%,100%{transform:translateX(560px) skewX(-18deg)}}
 @keyframes draw{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes au1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(140px,30px) scale(1.15)}66%{transform:translate(60px,-40px) scale(.9)}}
+@keyframes au2{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-120px,-60px) scale(1.2)}75%{transform:translate(90px,-20px) scale(.95)}}
+@keyframes au3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(220px,-90px) scale(1.25)}}
 .a{transform-box:fill-box;transform-origin:center}
 .gb{transform-origin:50% 100%}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.motion,.cf{display:none!important}.cfinal{visibility:visible!important}}
@@ -165,8 +168,24 @@ def hero():
             f'<stop offset="1" stop-color="{C["blue"]}" stop-opacity="0"/>'
             + ('' if STATIC else '<animateTransform attributeName="gradientTransform" type="translate" '
                'values="-1 0;1 0;1 0" keyTimes="0;.3;1" dur="5s" begin="1.6s" repeatCount="indefinite"/>')
-            + '</linearGradient>')
-    b = [frame(W, H), f'<rect x="1" y="1" width="{W-2}" height="{H-2}" rx="17" fill="url(#dots)" mask="url(#dotmask)"/>']
+            + '</linearGradient>'
+            # aurora: soft radial blobs that drift slowly behind the name
+            + ''.join(f'<radialGradient id="au{k}"><stop offset="0" stop-color="{C[col]}" stop-opacity="{op}"/>'
+                      f'<stop offset=".45" stop-color="{C[col]}" stop-opacity="{op * .4:.3f}"/>'
+                      f'<stop offset="1" stop-color="{C[col]}" stop-opacity="0"/></radialGradient>'
+                      for k, col, op in ((1, "blue", .30), (2, "coral", .22), (3, "mint", .12)))
+            + f'<clipPath id="cardclip"><rect x="1" y="1" width="{W-2}" height="{H-2}" rx="17"/></clipPath>')
+    blobs = [  # (gradient, cx, cy, rx, ry, keyframes, seconds, delay)
+        (1, 230, 150, 330, 170, "au1", 18, 0),
+        (2, 420, 250, 300, 150, "au2", 23, -6),
+        (3, 120, 280, 240, 120, "au3", 29, -11),
+    ]
+    aurora = "".join(
+        f'<g class="a"{loop(kf, dur, delay)}><ellipse cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" fill="url(#au{g})"/></g>'
+        for g, cx, cy, rx, ry, kf, dur, delay in blobs)
+    b = [frame(W, H),
+         f'<g clip-path="url(#cardclip)"><g{anim("fade", 2.4, T_HERO + .3, "ease-out")}>{aurora}</g></g>',
+         f'<rect x="1" y="1" width="{W-2}" height="{H-2}" rx="17" fill="url(#dots)" mask="url(#dotmask)"/>']
 
     b.append(f'<g class="a"{anim("rise", .6, T_HERO)}>{text(48, 64, CFG["handle"], 13, MONO, C["muted"])}</g>')
     b.append(f'<g class="a"{anim("rise", .8, T_HERO + .15)}>{text(42, 158, CFG["name_first"], 96, SERIF, C["ink"], "letter-spacing=\"-2\"")}</g>')
@@ -196,22 +215,6 @@ def hero():
     for i, (a, b_) in enumerate(edges):
         dash = "" if STATIC else f' stroke-dasharray="200" style="animation:draw .7s ease-out {T_HERO + .7 + i*.08:.2f}s both"'
         b.append(f'<path d="{edge(a, b_)}" fill="none" stroke="{C["line"]}" stroke-width="1.5"{dash}/>')
-
-    if not STATIC:
-        def route(mid):
-            hops = ["query", "router", mid, "llm", "answer"]
-            x, y = nodes["query"]
-            d = f"M{x},{y}"
-            for a, b_ in zip(hops, hops[1:]):
-                xa, ya = nodes[a]
-                d += f" L{xa},{ya + hh} " + edge(a, b_).split(" ", 1)[1]  # drop the edge's own M
-            x, y = nodes["answer"]
-            return d + f" L{x},{y}"
-        packets = []
-        for mid, col, begin in (("retriever", C["blue"], 0), ("text2sql", C["amber"], 1.6)):
-            packets.append(f'<circle r="3.5" fill="{col}"><animateMotion dur="3.2s" begin="{begin}s" '
-                           f'repeatCount="indefinite" path="{route(mid)}"/></circle>')
-        b.append(f'<g class="motion"{anim("fade", .5, T_HERO + 1.4)}>{"".join(packets)}</g>')
 
     for i, name in enumerate(order):
         x, y = nodes[name]

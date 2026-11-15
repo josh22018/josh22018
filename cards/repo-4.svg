@@ -9,6 +9,9 @@
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 @keyframes sweep{0%{transform:translateX(0) skewX(-18deg)}22%,100%{transform:translateX(560px) skewX(-18deg)}}
 @keyframes draw{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes au1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(140px,30px) scale(1.15)}66%{transform:translate(60px,-40px) scale(.9)}}
+@keyframes au2{0%,100%{transform:translate(0,0) scale(1)}40%{transform:translate(-120px,-60px) scale(1.2)}75%{transform:translate(90px,-20px) scale(.95)}}
+@keyframes au3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(220px,-90px) scale(1.25)}}
 .a{transform-box:fill-box;transform-origin:center}
 .gb{transform-origin:50% 100%}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}.motion,.cf{display:none!important}.cfinal{visibility:visible!important}}
