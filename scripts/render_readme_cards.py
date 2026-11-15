@@ -154,7 +154,7 @@ S = stats()
 
 # --------------------------------------------------------------------------- hero
 def hero():
-    W, H = 1000, 360
+    W, H = 1000, 300
     defs = (f'<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">'
             f'<circle cx="1" cy="1" r="1" fill="{C["faint"]}" opacity=".35"/></pattern>'
             f'<linearGradient id="fadeR" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/>'
@@ -177,7 +177,7 @@ def hero():
             + f'<clipPath id="cardclip"><rect x="1" y="1" width="{W-2}" height="{H-2}" rx="17"/></clipPath>')
     blobs = [  # (gradient, cx, cy, rx, ry, keyframes, seconds, delay)
         (1, 230, 150, 330, 170, "au1", 18, 0),
-        (2, 420, 250, 300, 150, "au2", 23, -6),
+        (2, 560, 220, 320, 150, "au2", 23, -6),
         (3, 120, 280, 240, 120, "au3", 29, -11),
     ]
     aurora = "".join(
@@ -192,40 +192,8 @@ def hero():
     last = text(42, 244, CFG["name_last"], 96, SERIF, C["ink"], 'font-style="italic" letter-spacing="-1"')
     shine = text(42, 244, CFG["name_last"], 96, SERIF, "url(#shine)", 'font-style="italic" letter-spacing="-1" class="motion"')
     b.append(f'<g class="a"{anim("rise", .8, T_HERO + .35)}>{last}{"" if STATIC else shine}</g>')
-    b.append(f'<g class="a"{anim("rise", .7, T_HERO + .6)}>{text(48, 290, CFG["tagline"], 16, SANS, C["muted"])}</g>')
-    dot = (f'<circle cx="54" cy="319" r="4.5" fill="{C["mint"]}" class="a"{loop("blink", 2.2, 1.5)}/>'
-           f'<circle cx="54" cy="319" r="4.5" fill="none" stroke="{C["mint"]}" class="a motion"{loop("ring", 2.2, 1.5, "ease-out")}/>')
-    b.append(f'<g class="a"{anim("rise", .7, T_HERO + .75)}>{dot}{text(68, 324, CFG["status"], 14, SANS, C["ink"])}</g>')
-
-    # agent pipeline: query -> router -> (retriever | text2sql) -> llm -> answer
-    nodes = {"query": (812, 66), "router": (812, 128), "retriever": (735, 192),
-             "text2sql": (889, 192), "llm": (812, 256), "answer": (812, 318)}
-    order = ["query", "router", "retriever", "text2sql", "llm", "answer"]
-    hh = 14
-
-    def edge(a, b_):
-        (x1, y1), (x2, y2) = nodes[a], nodes[b_]
-        y1, y2 = y1 + hh, y2 - hh
-        my = (y1 + y2) / 2
-        return f"M{x1},{y1} C{x1},{my} {x2},{my} {x2},{y2}"
-
-    edges = [("query", "router"), ("router", "retriever"), ("router", "text2sql"),
-             ("retriever", "llm"), ("text2sql", "llm"), ("llm", "answer")]
-    b.append(f'<g class="a"{anim("fade", .6, T_HERO + .5)}>{text(960, 40, "agent.graph", 11, MONO, C["faint"], "text-anchor=\"end\"")}</g>')
-    for i, (a, b_) in enumerate(edges):
-        dash = "" if STATIC else f' stroke-dasharray="200" style="animation:draw .7s ease-out {T_HERO + .7 + i*.08:.2f}s both"'
-        b.append(f'<path d="{edge(a, b_)}" fill="none" stroke="{C["line"]}" stroke-width="1.5"{dash}/>')
-
-    for i, name in enumerate(order):
-        x, y = nodes[name]
-        w = len(name) * 7.8 + 26
-        stroke = C["blue"] if name == "llm" else (C["amber"] if name == "text2sql" else C["line"])
-        chip = (f'<rect x="{x - w/2:.1f}" y="{y - hh}" width="{w:.1f}" height="{hh*2}" rx="{hh}" fill="{C["bg"]}" stroke="{stroke}"/>'
-                + text(x, y + 4.5, name, 12, MONO, C["ink"], 'text-anchor="middle"'))
-        b.append(f'<g class="a"{anim("pop", .45, T_HERO + .55 + i*.1)}>{chip}</g>')
-
-    return svg(W, H, "".join(b), ["serif", "serif-i", "mono", "sans"], defs,
-               f'{CFG["name_first"]} {CFG["name_last"]}. {CFG["tagline"]}')
+    return svg(W, H, "".join(b), ["serif", "serif-i", "mono"], defs,
+               f'{CFG["name_first"]} {CFG["name_last"]}')
 
 
 # --------------------------------------------------------------------------- contribution graph
