@@ -1,0 +1,48 @@
+{
+  "user": "josh22018",
+  "name_first": "Joshith",
+  "name_last": "Gadi",
+  "handle": "~/josh22018",
+  "tagline": "I build LLM systems that ship: RAG, Text2SQL and agent orchestration.",
+  "status": "AI Engineer at EXL · Bengaluru",
+
+  "colors": {
+    "bg": "#0B0E14",
+    "card": "#10141C",
+    "line": "#222A38",
+    "ink": "#ECE7DC",
+    "muted": "#8A93A4",
+    "faint": "#4A5366",
+    "blue": "#5B8CFF",
+    "coral": "#FF6F61",
+    "amber": "#F4B740",
+    "mint": "#3DDC97"
+  },
+
+  "tiles": [
+    {"key": "build", "label": "BUILD", "color": "blue", "value": 20, "suffix": "+",
+     "caption": ["projects built: agents, trading", "engines, lakehouses, RAG"],
+     "link": "https://github.com/josh22018?tab=repositories"},
+    {"key": "research", "label": "RESEARCH", "color": "coral", "value": 4, "suffix": "",
+     "caption": ["papers: 2 published at IEEE", "conferences, 2 under review"],
+     "link": "https://www.researchgate.net/scientific-contributions/Gadi-Joshith-2296715092"},
+    {"key": "learn", "label": "LEARN", "color": "amber", "value": 4, "suffix": "",
+     "caption": ["certifications: Databricks,", "AWS, Claude API, MCP"],
+     "link": "https://github.com/josh22018?tab=stars"}
+  ],
+
+  "repos": [
+    {"repo": "ai-powered-trading-system", "title": "ai-powered-trading-system",
+     "desc": "Multi-agent trading engine that parses NASDAQ ITCH 5.0 into a live order book.",
+     "lang": "Python"},
+    {"repo": "inventory-demand", "title": "inventory-demand",
+     "desc": "Demand forecasting app (FastAPI + React) with ML models and a GPT-4o-mini chat interface.",
+     "lang": "TypeScript"},
+    {"repo": "Dermify-Intelligent-Skin-Disesase-Detection-Web-Application", "title": "dermify",
+     "desc": "Skin disease classifier (InceptionV3, ResNet) with Grad-CAM explainability overlays.",
+     "lang": "Python"},
+    {"repo": "QSecure-Secure-File-Encryption-Decryption-System-using-Quantum-Cryptography", "title": "qsecure",
+     "desc": "File encryption that pairs AES-GCM with post-quantum cryptography.",
+     "lang": "Python"}
+  ]
+}
